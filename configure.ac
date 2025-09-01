@@ -3,7 +3,7 @@ AM_INIT_AUTOMAKE
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-# AC_PREREQ([2.67])
+AC_PREREQ([2.69])
 AC_CONFIG_SRCDIR([aaphoto.c])
 AC_CONFIG_HEADERS([config.h])
 

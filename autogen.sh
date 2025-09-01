@@ -18,22 +18,36 @@ if [ "$(uname)" = "Darwin" ]; then
     fi
 fi
 
-# Generate configure script
-if [ -f configure.ac ]; then
-    echo "Running autoconf..."
-    autoconf
+# Use autoreconf for better compatibility with newer autotools versions
+if command -v autoreconf >/dev/null 2>&1; then
+    echo "Running autoreconf..."
+    autoreconf --force --install --verbose
 else
-    echo "Error: configure.ac not found"
-    exit 1
-fi
-
-# Generate Makefile.in files
-if [ -f Makefile.am ]; then
-    echo "Running automake..."
-    automake --add-missing --copy
-else
-    echo "Error: Makefile.am not found"
-    exit 1
+    echo "autoreconf not found, using individual tools..."
+    
+    # Generate aclocal.m4
+    if command -v aclocal >/dev/null 2>&1; then
+        echo "Running aclocal..."
+        aclocal
+    fi
+    
+    # Generate configure script
+    if [ -f configure.ac ]; then
+        echo "Running autoconf..."
+        autoconf
+    else
+        echo "Error: configure.ac not found"
+        exit 1
+    fi
+    
+    # Generate Makefile.in files
+    if [ -f Makefile.am ]; then
+        echo "Running automake..."
+        automake --add-missing --copy
+    else
+        echo "Error: Makefile.am not found"
+        exit 1
+    fi
 fi
 
 echo "Configuration files generated successfully!"
