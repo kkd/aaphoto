@@ -15,7 +15,7 @@ brew install gcc
 ### 2. ソースからのビルド
 ```bash
 # リポジトリをクローン
-git clone <your-repo-url>
+git clone git@github.com:kkd/aaphoto.git
 cd aaphoto
 
 # 設定ファイルを生成
@@ -30,7 +30,7 @@ make install
 ### 3. Homebrew Formulaとしてインストール
 ```bash
 # ローカルFormulaとしてインストール
-brew install --build-from-source Formula/aaphoto.rb
+
 ```
 
 ## 使用方法

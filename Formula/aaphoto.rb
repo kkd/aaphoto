@@ -1,7 +1,7 @@
 class Aaphoto < Formula
   desc "Auto Adjust Photo - command-line image manipulation tool for automatic color correction"
   homepage "http://log69.com/aaphoto_en.html"
-  url "https://github.com/your-username/aaphoto/archive/v0.45.tar.gz"
+  url "https://github.com/kkd/aaphoto/archive/v0.45.tar.gz"
   sha256 "YOUR_SHA256_HERE"
   license "GPL-3.0-or-later"
   version "0.45"
