@@ -1,17 +1,17 @@
-# aaphoto用のHomebrew依存関係
+# Homebrew dependencies for aaphoto
 
-# ビルドツール
+# Build tools
 brew "autoconf"
 brew "automake"
 brew "libtool"
 brew "pkg-config"
 brew "gcc"
 
-# 画像処理ライブラリ
+# Image processing libraries
 brew "libjpeg-turbo"
 brew "libpng"
 brew "zlib"
 
-# 開発ツール（オプション）
+# Development tools (optional)
 brew "cmake"
 brew "ninja"

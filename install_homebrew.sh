@@ -1,51 +1,51 @@
 #!/bin/bash
-# install_homebrew.sh - Homebrew環境でのaaphotoインストールスクリプト
+# install_homebrew.sh - Installation script for aaphoto in Homebrew environment
 
 set -e
 
-echo "=== aaphoto Homebrew対応版インストールスクリプト ==="
+echo "=== aaphoto Homebrew Support Version Installation Script ==="
 
-# macOSかどうかチェック
+# Check if running on macOS
 if [ "$(uname)" != "Darwin" ]; then
-    echo "エラー: このスクリプトはmacOS専用です"
+    echo "Error: This script is for macOS only"
     exit 1
 fi
 
-# Homebrewがインストールされているかチェック
+# Check if Homebrew is installed
 if ! command -v brew >/dev/null 2>&1; then
-    echo "エラー: Homebrewがインストールされていません"
-    echo "Homebrewをインストールしてください: https://brew.sh/"
+    echo "Error: Homebrew is not installed"
+    echo "Please install Homebrew: https://brew.sh/"
     exit 1
 fi
 
-echo "Homebrewを検出しました: $(brew --prefix)"
+echo "Homebrew detected: $(brew --prefix)"
 
-# 依存関係をインストール
-echo "依存関係をインストール中..."
+# Install dependencies
+echo "Installing dependencies..."
 brew bundle --file=Brewfile
 
-# autogen.shを実行
-echo "設定ファイルを生成中..."
+# Run autogen.sh
+echo "Generating configuration files..."
 ./autogen.sh
 
-# configureを実行
-echo "configureを実行中..."
+# Run configure
+echo "Running configure..."
 ./configure
 
-# ビルド
-echo "ビルド中..."
+# Build
+echo "Building..."
 make
 
-# インストール（オプション）
-read -p "システムにインストールしますか？ (y/N): " -n 1 -r
+# Install (optional)
+read -p "Install to system? (y/N): " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo "インストール中..."
+    echo "Installing..."
     sudo make install
-    echo "インストール完了！"
+    echo "Installation complete!"
 else
-    echo "ビルド完了！実行可能ファイルは現在のディレクトリにあります"
+    echo "Build complete! Executable is in current directory"
 fi
 
-echo "=== インストール完了 ==="
-echo "使用方法: ./aaphoto --help"
+echo "=== Installation Complete ==="
+echo "Usage: ./aaphoto --help"

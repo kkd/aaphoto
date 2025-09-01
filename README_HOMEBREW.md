@@ -1,87 +1,87 @@
-# aaphoto - Homebrew対応版
+# aaphoto - Homebrew Support Version
 
-## 概要
-Auto Adjust Photoは、画像の自動色補正を行うコマンドラインツールです。macOSのHomebrewに対応しています。
+## Overview
+Auto Adjust Photo is a command-line tool for automatic color correction of images. It supports macOS Homebrew.
 
-## Homebrewでのインストール
+## Installation with Homebrew
 
-### 1. 依存関係のインストール
+### 1. Install Dependencies
 ```bash
 brew install autoconf automake libtool pkg-config
 brew install libjpeg-turbo libpng zlib
 brew install gcc
 ```
 
-### 2. ソースからのビルド
+### 2. Build from Source
 ```bash
-# リポジトリをクローン
+# Clone the repository
 git clone git@github.com:kkd/aaphoto.git
 cd aaphoto
 
-# 設定ファイルを生成
+# Generate configuration files
 ./autogen.sh
 
-# ビルドとインストール
+# Build and install
 ./configure
 make
 make install
 ```
 
-### 3. Homebrew Formulaとしてインストール
+### 3. Install as Homebrew Formula
 ```bash
-# ローカルFormulaとしてインストール
-
+# Install as local formula
+brew install --build-from-source Formula/aaphoto.rb
 ```
 
-## 使用方法
+## Usage
 ```bash
-# 基本的な使用
+# Basic usage
 aaphoto image.jpg
 
-# 自動調整とリサイズ
+# Auto adjust and resize
 aaphoto -a -r600 -q85 *.jpg
 
-# ディレクトリ内の全画像を処理
+# Process all images in directory
 aaphoto mydir
 
-# 詳細情報付きでリサイズ
+# Resize with verbose output
 aaphoto -V --resize70% image.png
 ```
 
-## 対応画像形式
+## Supported Image Formats
 - JPEG (.jpg, .jpeg)
 - PNG (.png)
 - BMP (.bmp)
 
-## 主な機能
-- 自動色補正
-- リサイズ
-- 回転・反転
-- 品質調整
-- マルチスレッド処理（OpenMP）
+## Main Features
+- Automatic color correction
+- Image resizing
+- Rotation and flipping
+- Quality adjustment
+- Multi-threading (OpenMP)
 
-## トラブルシューティング
+## Troubleshooting
 
-### ライブラリが見つからない場合
+### Library Not Found
 ```bash
-# pkg-configのパスを確認
+# Check pkg-config paths
 pkg-config --list-all | grep -E "(jpeg|png|zlib)"
 
-# Homebrewのパスを確認
+# Check Homebrew paths
 brew --prefix
 ```
 
-### OpenMPエラーが発生する場合
+### OpenMP Errors
 ```bash
-# GCCのバージョンを確認
+# Check GCC version
 gcc --version
 
-# OpenMPサポートを確認
+# Check OpenMP support
 gcc -fopenmp -dM -E - < /dev/null | grep -i openmp
 ```
 
-## ライセンス
-GNU General Public License v3.0 またはそれ以降
+## License
+GNU General Public License v3.0 or later
 
-## 作者
+## Author
 Andras Horvath (mail@log69.com)
